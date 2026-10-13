@@ -382,3 +382,10 @@ input[type="text"]:focus, input[type="email"]:focus { border-color: var(--ink); 
   .site-nav .brand { font-size: 1.25rem; }
   .hero .caption { display: none; }
 }
+
+/* Photography */
+img.scene { object-fit: cover; object-position: 50% 50%; }
+.hero::after { background: linear-gradient(180deg, rgba(6, 12, 10, .35) 0%, rgba(6, 12, 10, .05) 35%, rgba(6, 12, 10, .72) 100%); }
+.band::after { background: rgba(4, 10, 8, .42); }
+.band:hover::after, .band:focus-visible::after { background: rgba(4, 10, 8, .28); }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, rgba(6, 12, 10, .55) 0%, rgba(6, 12, 10, .2) 45%, rgba(6, 12, 10, 0) 70%); }

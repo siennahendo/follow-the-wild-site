@@ -22,5 +22,5 @@ Then open http://localhost:8000.
 ## Before launch
 
 - **Sign-up form** (`get-involved.html`): it's preview-only and doesn't save anything. Connect it to an email list service (Mailchimp, Buttondown, Formspree) by pointing the form at that service and removing the preview handler at the bottom of `assets/site.js`.
-- **Photos**: the landscape scenes are painted with code. To use a real photo, replace a `<canvas class="scene" ...>` with `<img class="scene" src="assets/photos/your-photo.jpg" alt="..." style="object-fit:cover">`.
+- **Photos**: web-sized copies live in `assets/photos/` (made from the originals at 2000px or 1400px). To swap one, drop a new file in that folder and change the `src` on the matching `<img class="scene">`. Use `style="object-position:x% y%"` to choose which part of the photo stays in frame on phones.
 - **Donations**: add a Donate button only once 501(c)(3) status comes through.
