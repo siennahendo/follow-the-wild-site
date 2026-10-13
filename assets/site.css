@@ -431,3 +431,8 @@ section.block.shade {
 }
 main:has(> .shade:last-child) + .site-footer { background: linear-gradient(180deg, var(--shade) 0, var(--deep) 4rem); }
 main:has(> .shade:last-child) + .site-footer { background: var(--deep); border-top: 1px solid var(--rule); padding-top: clamp(3.5rem, 7vw, 5rem); }
+
+/* Bands with very light photos (snow, ice) need more shade under white text */
+.band.bright::after { background: rgba(4, 10, 8, .5); }
+.band.bright:hover::after, .band.bright:focus-visible::after { background: rgba(4, 10, 8, .4); }
+.band.bright .word, .band.bright .what { text-shadow: 0 2px 24px rgba(0, 0, 0, .45); }
