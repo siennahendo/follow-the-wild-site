@@ -440,3 +440,9 @@ main:has(> .shade:last-child) + .site-footer { background: var(--deep); border-t
 /* Explore band: zoom in and slide the photo so the jumpers sit to the right of the word */
 .band .scene.shift-right { transform: translateX(31%) scale(1.64); }
 .band:hover .scene.shift-right, .band:focus-visible .scene.shift-right { transform: translateX(31%) scale(1.7); }
+
+/* Footer logo: scale with the window and wrap instead of running into the link columns */
+.foot-top > div { min-width: 0; }
+.site-footer .brand { font-size: clamp(1.9rem, 3.4vw, 3.2rem); align-items: flex-start; }
+.site-footer .brand span { white-space: normal; line-height: .95; }
+.site-footer .brand svg { width: 1.7rem; height: 2rem; margin-top: .3rem; }
