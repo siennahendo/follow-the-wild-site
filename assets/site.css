@@ -410,3 +410,13 @@ img.scene { object-fit: cover; object-position: 50% 50%; }
 }
 main:has(> .cta-band:last-child) + .site-footer { background: var(--deep); padding-top: clamp(3.5rem, 7vw, 5rem); }
 .cta-band::before { content: ""; position: absolute; inset: auto 0 0 0; height: 5rem; z-index: -1; background: linear-gradient(180deg, rgba(8, 17, 13, 0), var(--deep)); }
+
+/* Tighter rhythm: one gap between neighbouring sections, not two */
+section.block { padding-block: clamp(3rem, 6vw, 5rem); }
+section.block:not(.deep):not(.join) + section.block:not(.deep):not(.join) { padding-top: 0; }
+.head { margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.deep {
+  background: linear-gradient(180deg, var(--ground) 0, var(--deep) 4rem, var(--deep) calc(100% - 4rem), var(--ground) 100%);
+  padding-block: clamp(5rem, 9vw, 6.5rem);
+}
+.site-footer { background: linear-gradient(180deg, var(--ground) 0, var(--deep) 4rem); padding-top: clamp(5rem, 8vw, 6rem); }
