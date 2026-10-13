@@ -436,3 +436,7 @@ main:has(> .shade:last-child) + .site-footer { background: var(--deep); border-t
 .band.bright::after { background: rgba(4, 10, 8, .5); }
 .band.bright:hover::after, .band.bright:focus-visible::after { background: rgba(4, 10, 8, .4); }
 .band.bright .word, .band.bright .what { text-shadow: 0 2px 24px rgba(0, 0, 0, .45); }
+
+/* Explore band: zoom in and slide the photo so the jumpers sit to the right of the word */
+.band .scene.shift-right { transform: translateX(31%) scale(1.64); }
+.band:hover .scene.shift-right, .band:focus-visible .scene.shift-right { transform: translateX(31%) scale(1.7); }
