@@ -446,3 +446,8 @@ main:has(> .shade:last-child) + .site-footer { background: var(--deep); border-t
 .site-footer .brand { font-size: clamp(1.9rem, 3.4vw, 3.2rem); align-items: flex-start; }
 .site-footer .brand span { white-space: normal; line-height: .95; }
 .site-footer .brand svg { width: 1.7rem; height: 2rem; margin-top: .3rem; }
+
+/* Four values now */
+.values { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .values { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .values { grid-template-columns: minmax(0, 1fr); } }
