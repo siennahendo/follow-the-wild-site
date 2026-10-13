@@ -420,3 +420,14 @@ section.block:not(.deep):not(.join) + section.block:not(.deep):not(.join) { padd
   padding-block: clamp(5rem, 9vw, 6.5rem);
 }
 .site-footer { background: linear-gradient(180deg, var(--ground) 0, var(--deep) 4rem); padding-top: clamp(5rem, 8vw, 6rem); }
+
+/* Shaded band: a slightly darker ground to set a closing section apart */
+:root { --shade: #DEE5DD; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --shade: #07100C; } }
+:root[data-theme="dark"] { --shade: #07100C; }
+section.block.shade {
+  background: linear-gradient(180deg, var(--ground) 0, var(--shade) 3.5rem);
+  padding-top: clamp(5rem, 8vw, 6.5rem) !important;
+}
+main:has(> .shade:last-child) + .site-footer { background: linear-gradient(180deg, var(--shade) 0, var(--deep) 4rem); }
+main:has(> .shade:last-child) + .site-footer { background: var(--deep); border-top: 1px solid var(--rule); padding-top: clamp(3.5rem, 7vw, 5rem); }
