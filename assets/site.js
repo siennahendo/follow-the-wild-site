@@ -321,7 +321,7 @@
 
   // Topographic contour lines
   Array.prototype.forEach.call(document.querySelectorAll('svg.topo'), function (svg) {
-    var r = rng(11), ph = [r() * 6.28, r() * 6.28, r() * 6.28];
+    var r = rng(+svg.getAttribute('data-seed') || 11), ph = [r() * 6.28, r() * 6.28, r() * 6.28];
     svg.setAttribute('viewBox', '0 0 600 600');
     for (var k = 0; k < 10; k++) {
       var base = 36 + k * 27, d = '';

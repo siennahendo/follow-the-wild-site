@@ -590,3 +590,7 @@ main { position: relative; }
 /* About: tighter space around Our values */
 section.block.values-block { padding-block: clamp(1.25rem, 3vw, 2.25rem); }
 section.block.values-block + section.block.shade { padding-top: clamp(3rem, 5vw, 4rem) !important; }
+
+/* Contour lines on more pages: left-side variant, and a light-on-dark variant for dark bands */
+.topo-left { right: auto; left: -14%; }
+.topo-light { stroke: rgba(230, 238, 232, .09); }
