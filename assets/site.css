@@ -578,3 +578,7 @@ main { position: relative; }
 .rc-placeholder { display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--ground) 0 14px, var(--panel) 14px 28px); border-bottom: 2px dashed var(--track); }
 .rc-placeholder span { display: grid; gap: .3rem; text-align: center; padding: 1rem; font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
 .rc-placeholder b { font-family: var(--display); font-size: 1.6rem; letter-spacing: .03em; color: var(--blaze); }
+
+/* Night-sky sign-up band: lighter shade and a touch of brightness so the stars show */
+.join.photo.night .scene { filter: brightness(1.35) contrast(1.15) saturate(1.1); }
+.join.photo.night::after { background: linear-gradient(90deg, rgba(5, 12, 9, .55) 0%, rgba(5, 12, 9, .2) 50%, rgba(5, 12, 9, 0) 100%); }
