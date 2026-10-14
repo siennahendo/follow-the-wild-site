@@ -15,6 +15,7 @@
 <div id="site-header"></div>
 
 <main>
+  <svg class="trail-line" aria-hidden="true" data-from="#belief" data-to=".ways"></svg>
   <section class="hero">
     <img class="scene" src="assets/photos/baby-gorilla.jpg" alt="A young mountain gorilla peers out from the leaves" fetchpriority="high" decoding="async" style="object-position:62% 40%">
     <div class="wrap hero-inner">
@@ -28,7 +29,8 @@
     </div>
   </section>
 
-  <section class="block">
+  <section class="block topo-host" id="belief">
+    <svg class="topo" aria-hidden="true"></svg>
     <div class="wrap split">
       <div>
         <span class="label">Our belief</span>
@@ -70,6 +72,11 @@
         <span class="label">Launching first</span>
         <h2>Our first year</h2>
         <p class="lead">We're launching with five flagship programs across all four pillars, each built to show measurable impact from day one.</p>
+        <div class="stats">
+          <div><b data-count="4">4</b><span>pillars</span></div>
+          <div><b data-count="15">15</b><span>programs</span></div>
+          <div><b data-count="5">5</b><span>launching in year one</span></div>
+        </div>
       </div>
       <div class="cards-scroll">
         <div class="cards">
@@ -112,6 +119,32 @@
       </ul>
     </div>
   </section>
+
+  <section class="block field" style="padding-top:0" id="ways-end">
+    <div class="wrap field-head">
+      <div class="head"><span class="label">From the field</span><h2>Wild moments</h2></div>
+      <div class="field-nav">
+        <button type="button" class="fbtn" data-dir="-1" aria-label="Previous photos">←</button>
+        <button type="button" class="fbtn" data-dir="1" aria-label="Next photos">→</button>
+      </div>
+    </div>
+    <div class="field-track" tabindex="0" aria-label="Wildlife photos, scroll sideways">
+      <figure><button type="button" class="field-open" aria-label="Enlarge photo: Lion cubs"><img src="assets/photos/field/lion-cubs.jpg" alt="Lion cubs" loading="lazy" decoding="async"></button><figcaption>Lion cubs</figcaption></figure>
+      <figure><button type="button" class="field-open" aria-label="Enlarge photo: Giraffes"><img src="assets/photos/field/giraffes.jpg" alt="Giraffes" loading="lazy" decoding="async"></button><figcaption>Giraffes</figcaption></figure>
+      <figure><button type="button" class="field-open" aria-label="Enlarge photo: Brown bear fishing for salmon"><img src="assets/photos/field/brown-bear.jpg" alt="Brown bear fishing for salmon" loading="lazy" decoding="async"></button><figcaption>Brown bear fishing for salmon</figcaption></figure>
+      <figure><button type="button" class="field-open" aria-label="Enlarge photo: Eagle ray"><img src="assets/photos/field/eagle-ray.jpg" alt="Eagle ray" loading="lazy" decoding="async"></button><figcaption>Eagle ray</figcaption></figure>
+      <figure><button type="button" class="field-open" aria-label="Enlarge photo: Cheetah"><img src="assets/photos/field/cheetah.jpg" alt="Cheetah" loading="lazy" decoding="async"></button><figcaption>Cheetah</figcaption></figure>
+      <figure><button type="button" class="field-open" aria-label="Enlarge photo: Giant tortoise"><img src="assets/photos/field/tortoise.jpg" alt="Giant tortoise" loading="lazy" decoding="async"></button><figcaption>Giant tortoise</figcaption></figure>
+      <figure><button type="button" class="field-open" aria-label="Enlarge photo: Magpie riding a moose"><img src="assets/photos/field/magpie-moose.jpg" alt="Magpie riding a moose" loading="lazy" decoding="async"></button><figcaption>Magpie riding a moose</figcaption></figure>
+      <figure><button type="button" class="field-open" aria-label="Enlarge photo: Dolphins"><img src="assets/photos/field/dolphins.jpg" alt="Dolphins" loading="lazy" decoding="async"></button><figcaption>Dolphins</figcaption></figure>
+    </div>
+  </section>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Enlarged photo">
+    <img alt="">
+    <p></p>
+    <button type="button" class="lb-close">Close</button>
+  </dialog>
 
   <section class="cta-band">
     <img class="scene" src="assets/photos/bamboo-trail.jpg" alt="A trail leads through a bamboo forest toward the light" loading="lazy" decoding="async">

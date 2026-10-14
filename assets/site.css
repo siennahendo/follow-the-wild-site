@@ -451,3 +451,61 @@ main:has(> .shade:last-child) + .site-footer { background: var(--deep); border-t
 .values { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 1000px) { .values { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .values { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Motion preview ---------- */
+:root { --topo: rgba(19, 36, 30, .13); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --topo: rgba(195, 211, 176, .12); } }
+:root[data-theme="dark"] { --topo: rgba(195, 211, 176, .12); }
+
+main { position: relative; }
+
+/* Trail line */
+.trail-line { position: absolute; left: 0; width: 100%; pointer-events: none; z-index: 6; overflow: visible; color: var(--blaze); }
+.trail-line .trail-path { fill: none; stroke: var(--blaze); stroke-width: 2.5; stroke-dasharray: 9 9; stroke-linecap: round; }
+.trail-line use { opacity: 0; transition: opacity .5s ease; }
+.trail-line use.on { opacity: .9; }
+@media (max-width: 899px) { .trail-line { display: none; } }
+
+/* Topographic lines */
+.topo-host { position: relative; overflow: hidden; isolation: isolate; }
+.topo { position: absolute; z-index: -1; right: -8%; top: 50%; width: min(48rem, 80vw); height: auto; translate: 0 -50%; fill: none; stroke: var(--topo); stroke-width: 1.2; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .topo { animation: topo-drift 60s ease-in-out infinite alternate; }
+  @keyframes topo-drift { from { rotate: -4deg; } to { rotate: 6deg; } }
+}
+
+/* Fade-ins (only when JavaScript and motion are on) */
+.motion .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0ms); }
+.motion .reveal.in { opacity: 1; transform: none; }
+
+/* Counting numbers */
+.stats { display: flex; flex-wrap: wrap; gap: 1.5rem clamp(2rem, 6vw, 4.5rem); margin-top: 1rem; }
+.stats > div { display: grid; gap: .1rem; }
+.stats b { font-family: var(--display); font-weight: 900; font-size: clamp(3rem, 7vw, 4.75rem); line-height: .9; color: var(--blaze); font-variant-numeric: tabular-nums; }
+.stats span { font-family: var(--mono); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* Photo slider */
+.field-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.field-head .head { margin-bottom: 0; }
+.field-nav { display: flex; gap: .5rem; }
+.fbtn { width: 3rem; height: 3rem; border-radius: 50%; border: 1.5px solid var(--track); background: transparent; color: var(--ink); font-size: 1.2rem; cursor: pointer; transition: background .2s, border-color .2s; }
+.fbtn:hover { border-color: var(--blaze); background: var(--panel); }
+.field-track {
+  display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  padding-inline: max(var(--gutter), calc((100vw - 78rem) / 2 + var(--gutter))); padding-block: 1.75rem .5rem;
+  scroll-padding-inline: max(var(--gutter), calc((100vw - 78rem) / 2 + var(--gutter)));
+}
+.field-track::-webkit-scrollbar { display: none; }
+.field-track figure { margin: 0; flex: none; scroll-snap-align: start; display: grid; gap: .6rem; }
+.field-open { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 3px; overflow: hidden; }
+.field-open img { display: block; height: clamp(15rem, 32vw, 25rem); width: auto; max-width: none; transition: transform 1s cubic-bezier(.2, .7, .2, 1); }
+.field-open:hover img { transform: scale(1.04); }
+.field-track figcaption { font-size: .92rem; color: var(--ink-soft); }
+@media (max-width: 600px) { .field-open img { height: 15rem; max-width: 85vw; object-fit: cover; } }
+
+/* Lightbox */
+.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 110rem); max-height: 92vh; color: #fff; }
+.lightbox::backdrop { background: rgba(5, 10, 8, .9); }
+.lightbox img { display: block; max-width: 100%; max-height: 82vh; width: auto; height: auto; margin: 0 auto; border-radius: 3px; }
+.lightbox p { text-align: center; margin: .8rem auto 0; color: rgba(255, 255, 255, .85); }
+.lb-close { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 1rem); right: 1rem; font: 700 .8rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #fff; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; padding: .6rem 1rem; cursor: pointer; }

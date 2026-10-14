@@ -312,4 +312,126 @@
       document.getElementById('done').hidden = false;
     });
   }
+
+  /* ---------- Motion: trail line, topo lines, fade-ins, counters, photo slider ----------
+     Everything is visible without JavaScript; motion is skipped for visitors who ask for reduced motion. */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NS = 'http://www.w3.org/2000/svg';
+  var svgEl = function (tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; };
+
+  // Topographic contour lines
+  Array.prototype.forEach.call(document.querySelectorAll('svg.topo'), function (svg) {
+    var r = rng(11), ph = [r() * 6.28, r() * 6.28, r() * 6.28];
+    svg.setAttribute('viewBox', '0 0 600 600');
+    for (var k = 0; k < 10; k++) {
+      var base = 36 + k * 27, d = '';
+      for (var a = 0; a <= 90; a++) {
+        var t = a / 90 * Math.PI * 2;
+        var rr = base * (1 + 0.16 * Math.sin(3 * t + ph[0] + k * 0.22) + 0.09 * Math.sin(5 * t + ph[1] - k * 0.17) + 0.05 * Math.sin(2 * t + ph[2]));
+        d += (a ? 'L' : 'M') + (300 + rr * Math.cos(t) * 1.12).toFixed(1) + ' ' + (300 + rr * Math.sin(t) * 0.86).toFixed(1);
+      }
+      svg.appendChild(svgEl('path', { d: d + 'Z' }));
+    }
+  });
+
+  // Dashed trail that draws itself as you scroll, with paw prints along the way
+  var trail = document.querySelector('svg.trail-line');
+  if (trail) {
+    var mainEl = trail.parentElement, fromEl = document.querySelector(trail.getAttribute('data-from')), toEl = document.querySelector(trail.getAttribute('data-to'));
+    var maskPath = null, trailLen = 0, trailH = 0, paws = [];
+    var buildTrail = function () {
+      while (trail.firstChild) trail.removeChild(trail.firstChild);
+      paws = []; maskPath = null;
+      var wrap = fromEl.querySelector('.wrap');
+      var mr = mainEl.getBoundingClientRect(), fr = fromEl.getBoundingClientRect(), tr = toEl.getBoundingClientRect();
+      var textStart = wrap.getBoundingClientRect().left - mr.left + parseFloat(getComputedStyle(wrap).paddingLeft);
+      if (window.innerWidth < 900 || textStart < 44) { trail.style.display = 'none'; return; }
+      trail.style.display = '';
+      var top = fr.top - mr.top + 48; trailH = tr.bottom - fr.top - 60;
+      var w = mainEl.clientWidth, x0 = textStart / 2, amp = Math.min((textStart - 24) / 2, 46);
+      trail.style.top = top + 'px'; trail.style.height = trailH + 'px';
+      trail.setAttribute('viewBox', '0 0 ' + w + ' ' + trailH);
+      var xAt = function (y) { return x0 + amp * (0.7 * Math.sin(y / 230) + 0.3 * Math.sin(y / 83)); };
+      var d = 'M' + xAt(0).toFixed(1) + ' 0';
+      for (var y = 12; y <= trailH; y += 12) d += ' L' + xAt(y).toFixed(1) + ' ' + y;
+      var defs = svgEl('defs', {}), mask = svgEl('mask', { id: 'trail-mask', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: w, height: trailH });
+      maskPath = svgEl('path', { d: d, fill: 'none', stroke: '#fff', 'stroke-width': 10, 'stroke-linecap': 'round' });
+      mask.appendChild(maskPath); defs.appendChild(mask); trail.appendChild(defs);
+      trail.appendChild(svgEl('path', { d: d, 'class': 'trail-path', mask: 'url(#trail-mask)' }));
+      trailLen = maskPath.getTotalLength();
+      maskPath.style.strokeDasharray = trailLen;
+      for (var py = 160, side = 1; py < trailH - 40; py += 340, side = -side) {
+        var ang = Math.atan2(1, (xAt(py + 1) - xAt(py - 1)) / 2) * 180 / Math.PI;
+        var u = svgEl('use', { href: '#print', width: 13, height: 15, x: -6.5, y: -7.5,
+          transform: 'translate(' + (xAt(py) + side * 13).toFixed(1) + ' ' + py + ') rotate(' + (ang + 90).toFixed(1) + ')' });
+        trail.appendChild(u); paws.push({ el: u, y: py });
+      }
+      updateTrail();
+    };
+    var updateTrail = function () {
+      if (!maskPath) return;
+      var p = reduce ? 1 : Math.max(0, Math.min(1, (window.innerHeight * 0.7 - trail.getBoundingClientRect().top) / trailH));
+      maskPath.style.strokeDashoffset = trailLen * (1 - p);
+      paws.forEach(function (pw) { pw.el.classList.toggle('on', p * trailH > pw.y); });
+    };
+    window.addEventListener('scroll', updateTrail, { passive: true });
+    var rebuildTimer;
+    window.addEventListener('resize', function () { clearTimeout(rebuildTimer); rebuildTimer = setTimeout(buildTrail, 150); });
+    window.addEventListener('load', buildTrail);
+    buildTrail();
+  }
+
+  if (!reduce && 'IntersectionObserver' in window) {
+    // Fade sections in as they scroll into view
+    document.documentElement.classList.add('motion');
+    var revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    Array.prototype.forEach.call(document.querySelectorAll('.head, .split > *, .card, .ways li, .values li, .three > div, .who article, .role, .loop li, .pillar-body, .stats > div, .field-track figure'), function (el) {
+      var i = Array.prototype.indexOf.call(el.parentElement.children, el);
+      el.style.setProperty('--d', Math.min(i, 6) * 80 + 'ms');
+      el.classList.add('reveal');
+      revealIO.observe(el);
+    });
+
+    // Count numbers up when they come into view
+    Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function (el) {
+      var end = +el.getAttribute('data-count');
+      el.textContent = '0';
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var t0 = performance.now();
+        (function step(t) {
+          var p = Math.min(1, (t - t0) / 1400);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        })(t0);
+      }, { threshold: 0.6 });
+      io.observe(el);
+    });
+  }
+
+  // Photo slider arrows and lightbox
+  var track = document.querySelector('.field-track');
+  if (track) {
+    Array.prototype.forEach.call(document.querySelectorAll('.fbtn'), function (b) {
+      b.addEventListener('click', function () {
+        track.scrollBy({ left: +b.getAttribute('data-dir') * track.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+    var lb = document.getElementById('lightbox');
+    if (lb && lb.showModal) {
+      Array.prototype.forEach.call(track.querySelectorAll('.field-open'), function (btn) {
+        btn.addEventListener('click', function () {
+          var img = btn.querySelector('img');
+          lb.querySelector('img').src = img.src; lb.querySelector('img').alt = img.alt;
+          lb.querySelector('p').textContent = img.alt;
+          lb.showModal();
+        });
+      });
+      lb.querySelector('.lb-close').addEventListener('click', function () { lb.close(); });
+      lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    }
+  }
 })();
