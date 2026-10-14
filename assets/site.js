@@ -459,4 +459,44 @@
     window.addEventListener('resize', updateOdos);
     updateOdos();
   }
+
+  // About: words fill in as you scroll past them
+  var fills = Array.prototype.slice.call(document.querySelectorAll('.fill-text'));
+  if (fills.length && !reduce) {
+    fills.forEach(function (el) {
+      var words = el.textContent.trim().split(/\s+/);
+      el.textContent = '';
+      words.forEach(function (w, i) {
+        var sp = document.createElement('span'); sp.className = 'fw';
+        sp.textContent = w + (i < words.length - 1 ? ' ' : '');
+        el.appendChild(sp);
+      });
+    });
+    var updateFills = function () {
+      fills.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        var p = Math.max(0, Math.min(1, (window.innerHeight * 0.85 - r.top) / (r.height + window.innerHeight * 0.3)));
+        var n = Math.round(p * el.children.length);
+        for (var i = 0; i < el.children.length; i++) el.children[i].classList.toggle('lit', i < n);
+      });
+    };
+    window.addEventListener('scroll', updateFills, { passive: true });
+    updateFills();
+  }
+
+  // About: the belief loop draws left to right and lights each step
+  var loops = Array.prototype.slice.call(document.querySelectorAll('.loop-draw'));
+  if (loops.length) {
+    var updateLoops = function () {
+      loops.forEach(function (ol) {
+        var r = ol.getBoundingClientRect(), items = ol.children;
+        var p = reduce ? 1 : Math.max(0, Math.min(1, (window.innerHeight * 0.85 - r.top) / (window.innerHeight * 0.4)));
+        ol.style.setProperty('--p', p.toFixed(3));
+        for (var i = 0; i < items.length; i++) items[i].classList.toggle('lit', p >= i / (items.length - 1) - 0.001);
+        ol.classList.toggle('loop-complete', p >= 0.999);
+      });
+    };
+    window.addEventListener('scroll', updateLoops, { passive: true });
+    updateLoops();
+  }
 })();
