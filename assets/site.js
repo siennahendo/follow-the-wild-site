@@ -360,10 +360,10 @@
       trail.appendChild(svgEl('path', { d: d, 'class': 'trail-path', mask: 'url(#trail-mask)' }));
       trailLen = maskPath.getTotalLength();
       maskPath.style.strokeDasharray = trailLen;
-      for (var py = 160, side = 1; py < trailH - 40; py += 340, side = -side) {
+      for (var py = 90, side = 1; py < trailH - 30; py += 115, side = -side) {
         var ang = Math.atan2(1, (xAt(py + 1) - xAt(py - 1)) / 2) * 180 / Math.PI;
         var u = svgEl('use', { href: '#print', width: 13, height: 15, x: -6.5, y: -7.5,
-          transform: 'translate(' + (xAt(py) + side * 13).toFixed(1) + ' ' + py + ') rotate(' + (ang + 90).toFixed(1) + ')' });
+          transform: 'translate(' + (xAt(py) + side * 9).toFixed(1) + ' ' + py + ') rotate(' + (ang + 90).toFixed(1) + ')' });
         trail.appendChild(u); paws.push({ el: u, y: py });
       }
       updateTrail();
@@ -387,7 +387,7 @@
     var revealIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
-    Array.prototype.forEach.call(document.querySelectorAll('.head, .split > *, .card, .ways li, .values li, .three > div, .who article, .role, .loop li, .pillar-body, .stats > div, .field-track figure'), function (el) {
+    Array.prototype.forEach.call(document.querySelectorAll('.head, .split > *, .card, .ways li, .values li, .three > div, .who article, .role, .role-card, .faq details, .join-card, .loop li, .pillar-body, .stats > div, .field-track figure'), function (el) {
       var i = Array.prototype.indexOf.call(el.parentElement.children, el);
       el.style.setProperty('--d', Math.min(i, 6) * 80 + 'ms');
       el.classList.add('reveal');
@@ -434,4 +434,11 @@
       lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
     }
   }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.rc-join[data-role]'), function (a) {
+    a.addEventListener('click', function () {
+      var radio = document.getElementById(a.getAttribute('data-role'));
+      if (radio) radio.checked = true;
+    });
+  });
 })();

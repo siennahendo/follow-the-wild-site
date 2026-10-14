@@ -509,3 +509,30 @@ main { position: relative; }
 .lightbox img { display: block; max-width: 100%; max-height: 82vh; width: auto; height: auto; margin: 0 auto; border-radius: 3px; }
 .lightbox p { text-align: center; margin: .8rem auto 0; color: rgba(255, 255, 255, .85); }
 .lb-close { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 1rem); right: 1rem; font: 700 .8rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #fff; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; padding: .6rem 1rem; cursor: pointer; }
+
+/* ---------- Get Involved: photo cards, photo sign-up band, two-column FAQ ---------- */
+.role-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.role-card { display: grid; grid-template-rows: auto 1fr; background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; scroll-margin-top: calc(var(--nav-h) + 1.5rem); min-width: 0; }
+.rc-photo { aspect-ratio: 16 / 9; overflow: hidden; max-width: 100%; }
+.rc-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.role-card:hover .rc-photo img { transform: scale(1.05); }
+.rc-body { display: grid; gap: .8rem; align-content: start; padding: 1.5rem 1.5rem 1.75rem; }
+.rc-body h3 { font-size: clamp(2rem, 3.4vw, 2.6rem); margin-top: -.3rem; }
+.rc-body ul { list-style: none; margin: .25rem 0 .5rem; padding: 0; display: grid; gap: .8rem; }
+.rc-body li { display: grid; gap: .15rem; padding-left: 1.1rem; position: relative; }
+.rc-body li::before { content: ""; position: absolute; left: 0; top: .55rem; width: 6px; height: 6px; border-radius: 50%; background: var(--blaze); }
+.rc-body li b { font-size: 1.02rem; }
+.rc-body li span { color: var(--ink-soft); font-size: .95rem; }
+.rc-join { justify-self: start; }
+@media (max-width: 760px) { .role-cards { grid-template-columns: minmax(0, 1fr); } }
+
+.join.photo { position: relative; isolation: isolate; overflow: hidden; background: #0d1612; color: var(--on-image); padding-block: clamp(5rem, 10vw, 7.5rem); }
+.join.photo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(5, 12, 9, .82) 0%, rgba(5, 12, 9, .55) 55%, rgba(5, 12, 9, .3) 100%); }
+.join.photo .label, .join.photo .lead, .join.photo .fine { color: rgba(255, 255, 255, .85); }
+.join.photo .join-grid { align-items: center; }
+.join-card { background: var(--panel); color: var(--ink); border-radius: 6px; padding: clamp(1.25rem, 3vw, 2rem); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .6); }
+.join-card .fine { color: var(--ink-soft) !important; }
+
+.faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: start; }
+.faq-grid .head { position: sticky; top: calc(var(--nav-h) + 2rem); }
+@media (max-width: 860px) { .faq-grid { grid-template-columns: minmax(0, 1fr); } .faq-grid .head { position: static; } }
