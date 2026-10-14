@@ -536,3 +536,12 @@ main { position: relative; }
 .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: start; }
 .faq-grid .head { position: sticky; top: calc(var(--nav-h) + 2rem); }
 @media (max-width: 860px) { .faq-grid { grid-template-columns: minmax(0, 1fr); } .faq-grid .head { position: static; } }
+
+/* Rolling numbers */
+.stats b { line-height: 1; display: inline-flex; }
+.odo-col { display: inline-block; height: 1em; overflow: hidden; max-width: .62em; transition: max-width .35s ease, opacity .35s ease; }
+.odo-col.off { max-width: 0; opacity: 0; }
+.odo-strip { display: flex; flex-direction: column; transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+.odo-strip span { display: block; height: 1em; line-height: 1; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.stats b span { font: inherit; color: inherit; letter-spacing: 0; text-transform: none; }

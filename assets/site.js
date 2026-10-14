@@ -394,22 +394,6 @@
       revealIO.observe(el);
     });
 
-    // Count numbers up when they come into view
-    Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function (el) {
-      var end = +el.getAttribute('data-count');
-      el.textContent = '0';
-      var io = new IntersectionObserver(function (entries) {
-        if (!entries[0].isIntersecting) return;
-        io.disconnect();
-        var t0 = performance.now();
-        (function step(t) {
-          var p = Math.min(1, (t - t0) / 1400);
-          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
-          if (p < 1) requestAnimationFrame(step);
-        })(t0);
-      }, { threshold: 0.6 });
-      io.observe(el);
-    });
   }
 
   // Photo slider arrows and lightbox
@@ -441,4 +425,38 @@
       if (radio) radio.checked = true;
     });
   });
+
+  // Rolling (odometer) numbers tied to scroll: digits roll as the stats move up the screen
+  var odos = Array.prototype.map.call(document.querySelectorAll('[data-count]'), function (el, idx) {
+    var end = +el.getAttribute('data-count'), digits = String(end).length, cols = [];
+    if (reduce) return null;
+    el.textContent = '';
+    var sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = end; el.appendChild(sr);
+    for (var i = 0; i < digits; i++) {
+      var col = document.createElement('span'); col.className = 'odo-col'; col.setAttribute('aria-hidden', 'true');
+      var strip = document.createElement('span'); strip.className = 'odo-strip';
+      for (var n = 0; n <= 9; n++) { var d = document.createElement('span'); d.textContent = n; strip.appendChild(d); }
+      col.appendChild(strip); el.appendChild(col); cols.push({ col: col, strip: strip });
+    }
+    return { el: el, end: end, digits: digits, cols: cols, idx: idx };
+  }).filter(Boolean);
+  if (odos.length) {
+    var statsBox = odos[0].el.closest('.stats') || odos[0].el;
+    var updateOdos = function () {
+      var r = statsBox.getBoundingClientRect();
+      var p = (window.innerHeight - r.top) / (window.innerHeight * 0.5);
+      odos.forEach(function (o) {
+        var q = Math.max(0, Math.min(1, (p - o.idx * 0.12) / 0.76));
+        var v = Math.round(o.end * q), str = String(v), pad = o.digits - str.length;
+        o.cols.forEach(function (c, i) {
+          var digit = i < pad ? 0 : +str[i - pad];
+          c.strip.style.transform = 'translateY(' + (-digit * 10) + '%)';
+          c.col.classList.toggle('off', i < pad);
+        });
+      });
+    };
+    window.addEventListener('scroll', updateOdos, { passive: true });
+    window.addEventListener('resize', updateOdos);
+    updateOdos();
+  }
 })();
