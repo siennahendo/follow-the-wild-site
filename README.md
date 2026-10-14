@@ -23,4 +23,4 @@ Then open http://localhost:8000.
 
 - **Sign-up form** (`get-involved.html`): it's preview-only and doesn't save anything. Connect it to an email list service (Mailchimp, Buttondown, Formspree) by pointing the form at that service and removing the preview handler at the bottom of `assets/site.js`.
 - **Photos**: web-sized copies live in `assets/photos/` (made from the originals at 2000px or 1400px). To swap one, drop a new file in that folder and change the `src` on the matching `<img class="scene">`. Use `style="object-position:x% y%"` to choose which part of the photo stays in frame on phones.
-- **Donations**: add a Donate button only once 501(c)(3) status comes through.
+- **Donations**: 501(c)(3) status is approved. Add a Donate button once an online giving platform is set up.

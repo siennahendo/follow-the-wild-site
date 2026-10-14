@@ -51,7 +51,7 @@
             '<li><a href="get-involved.html#creators">Creators</a></li><li><a href="get-involved.html#partners">Partners &amp; funders</a></li></ul></div>' +
         '</div>' +
         '<div class="foot-bottom"><span>© 2026 Follow the Wild</span>' +
-          '<span>Follow the Wild is being set up as a nonprofit. 501(c)(3) status pending.</span></div>' +
+          '<span>Follow the Wild is a 501(c)(3) nonprofit organization.</span></div>' +
       '</div></footer>';
   }
 
