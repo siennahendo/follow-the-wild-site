@@ -598,3 +598,13 @@ section.block.values-block + section.block.shade { padding-top: clamp(3rem, 5vw,
 /* Slider captions wrap to the photo's width without stretching it */
 .field-track figcaption { width: 0; min-width: 100%; }
 .field-track figcaption { line-height: 1.45; }
+
+/* ---------- What we do: About-style scroll effects ---------- */
+.lit-list li { border-left: 2px solid var(--rule); padding-left: 1rem; transition: border-color .4s ease; }
+.lit-list li b { transition: color .4s ease; }
+.lit-list li .tag.now { transition: background .4s, border-color .4s, color .4s; }
+.motion .lit-list li:not(.lit) b { color: var(--ink-soft); }
+.motion .lit-list li:not(.lit) .tag.now { background: transparent; color: var(--blaze); }
+.lit-list li.lit { border-left-color: var(--blaze); }
+.motion .frame.reveal { clip-path: inset(10% 10% 10% 10% round 4px); transform: none; transition: clip-path 1.2s cubic-bezier(.2, .7, .2, 1), opacity .8s ease; }
+.motion .frame.reveal.in { clip-path: inset(0 0 0 0 round 4px); }
