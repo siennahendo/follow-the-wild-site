@@ -608,3 +608,9 @@ section.block.values-block + section.block.shade { padding-top: clamp(3rem, 5vw,
 .lit-list li.lit { border-left-color: var(--blaze); }
 .motion .frame.reveal { clip-path: inset(10% 10% 10% 10% round 4px); transform: none; transition: clip-path 1.2s cubic-bezier(.2, .7, .2, 1), opacity .8s ease; }
 .motion .frame.reveal.in { clip-path: inset(0 0 0 0 round 4px); }
+
+/* Get Involved cover: a stronger zoom and drift so the movement shows on a smooth sky photo */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-pan .scene { animation: drift-pan 14s cubic-bezier(.2, .6, .2, 1) both; }
+  @keyframes drift-pan { from { transform: scale(1.2) translate(-2.5%, 2%); } to { transform: scale(1.02) translate(0, 0); } }
+}
