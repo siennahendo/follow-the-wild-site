@@ -338,7 +338,7 @@
   var trail = document.querySelector('svg.trail-line');
   if (trail) {
     var mainEl = trail.parentElement, fromEl = document.querySelector(trail.getAttribute('data-from')), toEl = document.querySelector(trail.getAttribute('data-to'));
-    var maskPath = null, trailLen = 0, trailH = 0, paws = [];
+    var maskPath = null, trailLen = 0, trailH = 0, paws = [], arrow = null;
     var buildTrail = function () {
       while (trail.firstChild) trail.removeChild(trail.firstChild);
       paws = []; maskPath = null;
@@ -372,6 +372,12 @@
       mask.appendChild(maskPath); defs.appendChild(mask); trail.appendChild(defs);
       trail.appendChild(svgEl('path', { d: d, 'class': 'trail-path', mask: 'url(#trail-mask)' }));
       trailLen = maskPath.getTotalLength();
+      arrow = null;
+      if (endEl) {
+        var ang2 = Math.atan2(ey - (lowY + 25), 40) * 180 / Math.PI;
+        arrow = svgEl('path', { d: 'M -11 -8 L 1 0 L -11 8', 'class': 'trail-arrow', transform: 'translate(' + (ex + 2).toFixed(1) + ' ' + ey.toFixed(1) + ') rotate(' + ang2.toFixed(1) + ')' });
+        trail.appendChild(arrow);
+      }
       maskPath.style.strokeDasharray = trailLen;
       for (var py = 90, side = 1; py < (endEl ? vy - 20 : trailH - 30); py += 115, side = -side) {
         var ang = Math.atan2(1, (xAt(py + 1) - xAt(py - 1)) / 2) * 180 / Math.PI;
@@ -386,11 +392,20 @@
       var p = reduce ? 1 : Math.max(0, Math.min(1, (window.innerHeight * 0.7 - trail.getBoundingClientRect().top) / trailH));
       maskPath.style.strokeDashoffset = trailLen * (1 - p);
       paws.forEach(function (pw) { pw.el.classList.toggle('on', p * trailH > pw.y); });
+      if (arrow) arrow.classList.toggle('on', p > 0.985);
     };
     window.addEventListener('scroll', updateTrail, { passive: true });
     var rebuildTimer;
     window.addEventListener('resize', function () { clearTimeout(rebuildTimer); rebuildTimer = setTimeout(buildTrail, 150); });
     window.addEventListener('load', buildTrail);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(buildTrail);
+    if ('ResizeObserver' in window) {
+      var lastH = 0;
+      new ResizeObserver(function () {
+        var h = document.body.scrollHeight;
+        if (Math.abs(h - lastH) > 4) { lastH = h; clearTimeout(rebuildTimer); rebuildTimer = setTimeout(buildTrail, 120); }
+      }).observe(document.body);
+    }
     buildTrail();
   }
 
