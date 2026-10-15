@@ -427,6 +427,13 @@
   // Photo slider arrows and lightbox
   var track = document.querySelector('.field-track');
   if (track) {
+    // Up/down swipes over the slider scroll the page instead of getting caught by the slider
+    track.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && !e.shiftKey) {
+        e.preventDefault();
+        window.scrollBy(0, e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY);
+      }
+    }, { passive: false });
     Array.prototype.forEach.call(document.querySelectorAll('.fbtn'), function (b) {
       b.addEventListener('click', function () {
         track.scrollBy({ left: +b.getAttribute('data-dir') * track.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' });

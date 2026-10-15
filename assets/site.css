@@ -616,3 +616,6 @@ section.block.values-block + section.block.shade { padding-top: clamp(3rem, 5vw,
 }
 .trail-line .trail-arrow { fill: none; stroke: var(--blaze); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity .35s ease; }
 .trail-line .trail-arrow.on { opacity: 1; }
+
+/* Slider: gentler snapping so scrolling never feels stuck; no browser back-swipe from the slider */
+.field-track { scroll-snap-type: x proximity; overscroll-behavior-x: contain; }
