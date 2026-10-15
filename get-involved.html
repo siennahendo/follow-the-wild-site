@@ -26,39 +26,32 @@
     </div>
   </section>
 
-  <section class="photo-band" id="paths">
-    <img class="scene" src="assets/photos/class-outdoors.jpg" alt="A teacher and students testing pond water outdoors" loading="lazy" decoding="async">
-    <div class="wrap pb-inner">
-      <div class="pb-head">
-        <span class="label">Ways to help</span>
-        <h2>Pick your path</h2>
-        <p>Four ways in. Choose the one that fits, and we'll send you everything you need to start.</p>
-      </div>
-      <div class="ptiles">
-        <a class="ptile rc-join" href="#join" data-role="r-teacher" id="teachers">
-          <span class="label">Educators</span>
-          <h3>Teachers</h3>
-          <ul><li>Teach a free unit</li><li>Run a class sighting project</li><li>Host an explorer</li></ul>
-          <span class="go">Sign up as a teacher <i aria-hidden="true">→</i></span>
-        </a>
-        <a class="ptile rc-join" href="#join" data-role="r-family" id="families">
-          <span class="label">At home</span>
-          <h3>Families</h3>
-          <ul><li>Take a challenge</li><li>Watch together</li><li>Log what you see</li></ul>
-          <span class="go">Sign up as a family <i aria-hidden="true">→</i></span>
-        </a>
-        <a class="ptile rc-join" href="#join" data-role="r-creator" id="creators">
-          <span class="label">Voices</span>
-          <h3>Creators</h3>
-          <ul><li>Become an ambassador</li><li>Share the stories</li><li>Mentor a storyteller</li></ul>
-          <span class="go">Sign up as a creator <i aria-hidden="true">→</i></span>
-        </a>
-        <a class="ptile rc-join" href="#join" data-role="r-partner" id="partners">
-          <span class="label">Brands &amp; funders</span>
-          <h3>Partners</h3>
-          <ul><li>Partner on a campaign</li><li>Fund a pillar</li><li>Join an expedition</li></ul>
-          <span class="go">Partner with us <i aria-hidden="true">→</i></span>
-        </a>
+  <section class="block" id="paths">
+    <div class="wrap split-feature">
+      <div class="sf-photo"><img src="assets/photos/class-outdoors.jpg" alt="A teacher and students testing pond water outdoors" loading="lazy" decoding="async"></div>
+      <div class="sf-body">
+        <div class="head"><span class="label">Ways to help</span><h2>Pick your path</h2><p class="lead">Four ways in. Choose the one that fits, and we'll send you everything you need to start.</p></div>
+        <div class="ptabs" role="tablist" aria-label="Ways to help"><button type="button" class="ptab on" role="tab" aria-selected="true" aria-controls="teachers" data-t="teachers">Teachers</button><button type="button" class="ptab" role="tab" aria-selected="false" aria-controls="families" data-t="families">Families</button><button type="button" class="ptab" role="tab" aria-selected="false" aria-controls="creators" data-t="creators">Creators</button><button type="button" class="ptab" role="tab" aria-selected="false" aria-controls="partners" data-t="partners">Partners</button></div>
+          <div class="ppanel on" role="tabpanel" id="teachers" data-t="teachers">
+            <span class="label">Educators</span>
+            <ul><li>Teach a free unit</li><li>Run a class sighting project</li><li>Host an explorer</li></ul>
+            <a class="btn primary rc-join" href="#join" data-role="r-teacher">Sign up as a teacher</a>
+          </div>
+          <div class="ppanel" role="tabpanel" id="families" data-t="families">
+            <span class="label">At home</span>
+            <ul><li>Take a challenge</li><li>Watch together</li><li>Log what you see</li></ul>
+            <a class="btn primary rc-join" href="#join" data-role="r-family">Sign up as a family</a>
+          </div>
+          <div class="ppanel" role="tabpanel" id="creators" data-t="creators">
+            <span class="label">Voices</span>
+            <ul><li>Become an ambassador</li><li>Share the stories</li><li>Mentor a storyteller</li></ul>
+            <a class="btn primary rc-join" href="#join" data-role="r-creator">Sign up as a creator</a>
+          </div>
+          <div class="ppanel" role="tabpanel" id="partners" data-t="partners">
+            <span class="label">Brands &amp; funders</span>
+            <ul><li>Partner on a campaign</li><li>Fund a pillar</li><li>Join an expedition</li></ul>
+            <a class="btn primary rc-join" href="#join" data-role="r-partner">Partner with us</a>
+          </div>
       </div>
     </div>
   </section>

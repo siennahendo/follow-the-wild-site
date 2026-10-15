@@ -415,7 +415,7 @@
     var revealIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
-    Array.prototype.forEach.call(document.querySelectorAll('.head, .split > *, .card, .ways li, .values li, .three > div, .who article, .role, .role-card, .frame, .ptile, .pb-head, .faq details, .join-card, .loop li, .pillar-body, .stats > div, .field-track figure'), function (el) {
+    Array.prototype.forEach.call(document.querySelectorAll('.head, .split > *, .card, .ways li, .values li, .three > div, .who article, .role, .role-card, .frame, .sf-photo, .sf-body, .faq details, .join-card, .loop li, .pillar-body, .stats > div, .field-track figure'), function (el) {
       var i = Array.prototype.indexOf.call(el.parentElement.children, el);
       el.style.setProperty('--d', Math.min(i, 6) * 80 + 'ms');
       el.classList.add('reveal');
@@ -543,5 +543,18 @@
     };
     window.addEventListener('scroll', updateLit, { passive: true });
     updateLit();
+  }
+
+  // Get Involved: tabs for the four paths (also opened by #teachers, #families, ... links)
+  var ptabs = Array.prototype.slice.call(document.querySelectorAll('.ptab'));
+  if (ptabs.length) {
+    var showPath = function (id) {
+      ptabs.forEach(function (b) { var on = b.getAttribute('data-t') === id; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+      Array.prototype.forEach.call(document.querySelectorAll('.ppanel'), function (p) { p.classList.toggle('on', p.getAttribute('data-t') === id); });
+    };
+    ptabs.forEach(function (b) { b.addEventListener('click', function () { showPath(b.getAttribute('data-t')); }); });
+    var fromHash = function () { var h = location.hash.slice(1); if (h && document.querySelector('.ppanel[data-t="' + h + '"]')) { showPath(h); document.getElementById('paths').scrollIntoView(); } };
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
   }
 })();
