@@ -415,7 +415,7 @@
     var revealIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
-    Array.prototype.forEach.call(document.querySelectorAll('.head, .split > *, .card, .ways li, .values li, .three > div, .who article, .role, .role-card, .frame, .faq details, .join-card, .loop li, .pillar-body, .stats > div, .field-track figure'), function (el) {
+    Array.prototype.forEach.call(document.querySelectorAll('.head, .split > *, .card, .ways li, .values li, .three > div, .who article, .role, .role-card, .frame, .ptile, .pb-head, .faq details, .join-card, .loop li, .pillar-body, .stats > div, .field-track figure'), function (el) {
       var i = Array.prototype.indexOf.call(el.parentElement.children, el);
       el.style.setProperty('--d', Math.min(i, 6) * 80 + 'ms');
       el.classList.add('reveal');
