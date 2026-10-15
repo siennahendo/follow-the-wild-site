@@ -499,4 +499,27 @@
     window.addEventListener('scroll', updateLoops, { passive: true });
     updateLoops();
   }
+
+  // What we do: switch the pinned photo and highlight the menu as each pillar scrolls into view
+  var stepBlocks = Array.prototype.slice.call(document.querySelectorAll('.step-block'));
+  if (stepBlocks.length) {
+    var setPillar = function (id) {
+      Array.prototype.forEach.call(document.querySelectorAll('.story-media figure'), function (f) { f.classList.toggle('on', f.getAttribute('data-pillar') === id); });
+      Array.prototype.forEach.call(document.querySelectorAll('.subnav a[data-pillar]'), function (a) { a.classList.toggle('active', a.getAttribute('data-pillar') === id); });
+    };
+    var updateStory = function () {
+      var mid = window.innerHeight * 0.5, current = stepBlocks[0];
+      stepBlocks.forEach(function (b) { if (b.getBoundingClientRect().top < mid) current = b; });
+      setPillar(current.getAttribute('data-pillar'));
+      var story = document.querySelector('.story');
+      if (story) {
+        var r = story.getBoundingClientRect();
+        var sp = Math.max(0, Math.min(1, (mid - r.top) / (r.height - mid * 0.6)));
+        document.querySelector('.subnav').style.setProperty('--sp', sp.toFixed(3));
+      }
+    };
+    window.addEventListener('scroll', updateStory, { passive: true });
+    window.addEventListener('resize', updateStory);
+    updateStory();
+  }
 })();
