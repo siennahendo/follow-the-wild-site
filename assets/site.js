@@ -554,6 +554,20 @@
       Array.prototype.forEach.call(document.querySelectorAll('.ppanel'), function (p) { p.classList.toggle('on', p.getAttribute('data-t') === id); });
       var word = document.getElementById('path-word'), tab = document.querySelector('.ptab[data-t="' + id + '"]');
       if (word && tab) word.textContent = tab.textContent;
+      // Swap the framed photo when a path has its own (data-img); otherwise use the default
+      var img = document.querySelector('.sf-frame img');
+      if (img && tab) {
+        if (!img.dataset.defSrc) { img.dataset.defSrc = img.getAttribute('src'); img.dataset.defPos = img.style.objectPosition; img.dataset.defAlt = img.alt; }
+        var src = tab.getAttribute('data-img') || img.dataset.defSrc;
+        if (img.getAttribute('src') !== src) {
+          img.style.opacity = '0';
+          setTimeout(function () {
+            img.src = src; img.alt = tab.getAttribute('data-alt') || img.dataset.defAlt;
+            img.style.objectPosition = tab.getAttribute('data-pos') || img.dataset.defPos;
+            img.style.opacity = '1';
+          }, 220);
+        }
+      }
     };
     ptabs.forEach(function (b) { b.addEventListener('click', function () { showPath(b.getAttribute('data-t')); }); });
     var fromHash = function () { var h = location.hash.slice(1); if (h && document.querySelector('.ppanel[data-t="' + h + '"]')) { showPath(h); document.getElementById('paths').scrollIntoView(); } };

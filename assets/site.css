@@ -688,3 +688,4 @@ section.block.values-block + section.block.shade { padding-top: clamp(3rem, 5vw,
 .split-feature { align-items: start; }
 .sf-frame { position: relative; top: auto; }
 @media (min-width: 861px) { .sf-frame { position: sticky; top: calc(var(--nav-h) + 2rem); } }
+.sf-frame img { transition: opacity .25s ease; }
