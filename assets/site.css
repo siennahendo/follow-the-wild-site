@@ -594,3 +594,7 @@ section.block.values-block + section.block.shade { padding-top: clamp(3rem, 5vw,
 /* Contour lines on more pages: left-side variant, and a light-on-dark variant for dark bands */
 .topo-left { right: auto; left: -14%; }
 .topo-light { stroke: rgba(230, 238, 232, .09); }
+
+/* Slider captions wrap to the photo's width */
+.field-track figure { width: min-content; }
+.field-track figcaption { line-height: 1.45; }
