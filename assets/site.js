@@ -352,15 +352,28 @@
       trail.style.top = top + 'px'; trail.style.height = trailH + 'px';
       trail.setAttribute('viewBox', '0 0 ' + w + ' ' + trailH);
       var xAt = function (y) { return x0 + amp * (0.7 * Math.sin(y / 230) + 0.3 * Math.sin(y / 83)); };
+      // Optional end point: curve in to an element (e.g. the sign-up button)
+      var endEl = trail.getAttribute('data-end') && document.querySelector(trail.getAttribute('data-end'));
+      var vy = trailH, ex = 0, ey = 0, lowY = 0;
+      if (endEl) {
+        var er = endEl.getBoundingClientRect();
+        ex = er.left - mr.left - 18; ey = er.top - mr.top - top + er.height / 2;
+        // Pass underneath any text block named in data-avoid before curving up into the target
+        var avoid = trail.getAttribute('data-avoid') && document.querySelector(trail.getAttribute('data-avoid'));
+        var lowY = Math.max(ey, avoid ? avoid.getBoundingClientRect().bottom - mr.top - top : ey) + 46;
+        vy = lowY - 30; trailH = lowY + 40;
+        trail.style.height = trailH + 'px'; trail.setAttribute('viewBox', '0 0 ' + w + ' ' + trailH);
+      }
       var d = 'M' + xAt(0).toFixed(1) + ' 0';
-      for (var y = 12; y <= trailH; y += 12) d += ' L' + xAt(y).toFixed(1) + ' ' + y;
+      for (var y = 12; y <= vy; y += 12) d += ' L' + xAt(y).toFixed(1) + ' ' + y;
+      if (endEl) d += ' C ' + xAt(vy).toFixed(1) + ' ' + (lowY + 25).toFixed(1) + ' ' + (ex - 40).toFixed(1) + ' ' + (lowY + 25).toFixed(1) + ' ' + ex.toFixed(1) + ' ' + ey.toFixed(1);
       var defs = svgEl('defs', {}), mask = svgEl('mask', { id: 'trail-mask', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: w, height: trailH });
       maskPath = svgEl('path', { d: d, fill: 'none', stroke: '#fff', 'stroke-width': 10, 'stroke-linecap': 'round' });
       mask.appendChild(maskPath); defs.appendChild(mask); trail.appendChild(defs);
       trail.appendChild(svgEl('path', { d: d, 'class': 'trail-path', mask: 'url(#trail-mask)' }));
       trailLen = maskPath.getTotalLength();
       maskPath.style.strokeDasharray = trailLen;
-      for (var py = 90, side = 1; py < trailH - 30; py += 115, side = -side) {
+      for (var py = 90, side = 1; py < (endEl ? vy - 20 : trailH - 30); py += 115, side = -side) {
         var ang = Math.atan2(1, (xAt(py + 1) - xAt(py - 1)) / 2) * 180 / Math.PI;
         var u = svgEl('use', { href: '#print', width: 13, height: 15, x: -6.5, y: -7.5,
           transform: 'translate(' + (xAt(py) + side * 9).toFixed(1) + ' ' + py + ') rotate(' + (ang + 90).toFixed(1) + ')' });
