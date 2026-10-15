@@ -482,6 +482,7 @@
       var p = (window.innerHeight - r.top) / (window.innerHeight * 0.5);
       odos.forEach(function (o) {
         var q = Math.max(0, Math.min(1, (p - o.idx * 0.12) / 0.76));
+        o.best = Math.max(o.best || 0, q); q = o.best;  // never roll back down once reached
         var v = Math.round(o.end * q), str = String(v), pad = o.digits - str.length;
         o.cols.forEach(function (c, i) {
           var digit = i < pad ? 0 : +str[i - pad];
