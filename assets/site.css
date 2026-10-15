@@ -689,3 +689,9 @@ section.block.values-block + section.block.shade { padding-top: clamp(3rem, 5vw,
 .sf-frame { position: relative; top: auto; }
 @media (min-width: 861px) { .sf-frame { position: sticky; top: calc(var(--nav-h) + 2rem); } }
 .sf-frame img { transition: opacity .25s ease; }
+/* "Photo needed" stand-in inside the Get Involved frame */
+.sf-placeholder { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--ground) 0 14px, var(--panel) 14px 28px); }
+.sf-placeholder span { display: grid; gap: .4rem; text-align: center; padding: 1.5rem; margin-bottom: 4rem; font-family: var(--mono); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.sf-placeholder b { font-family: var(--display); font-size: 2rem; letter-spacing: .03em; color: var(--blaze); }
+.sf-placeholder em { font-style: normal; }
+.sf-frame .word { z-index: 1; }

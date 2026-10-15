@@ -555,6 +555,8 @@
       var word = document.getElementById('path-word'), tab = document.querySelector('.ptab[data-t="' + id + '"]');
       if (word && tab) word.textContent = tab.textContent;
       // Swap the framed photo when a path has its own (data-img); otherwise use the default
+      var ph = document.querySelector('.sf-placeholder'), need = tab && tab.getAttribute('data-placeholder');
+      if (ph) { ph.hidden = !need; if (need) ph.querySelector('em').textContent = need; }
       var img = document.querySelector('.sf-frame img');
       if (img && tab) {
         if (!img.dataset.defSrc) { img.dataset.defSrc = img.getAttribute('src'); img.dataset.defPos = img.style.objectPosition; img.dataset.defAlt = img.alt; }
