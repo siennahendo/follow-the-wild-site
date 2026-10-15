@@ -684,3 +684,7 @@ section.block.values-block + section.block.shade { padding-top: clamp(3rem, 5vw,
 #paths .ppanel { scroll-margin-top: calc(var(--nav-h) + 1rem); }
 @media (max-width: 860px) { .split-feature { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .ppanel.on { animation: none; } }
+/* Get Involved photo framed like the What we do pillars */
+.split-feature { align-items: start; }
+.sf-frame { position: relative; top: auto; }
+@media (min-width: 861px) { .sf-frame { position: sticky; top: calc(var(--nav-h) + 2rem); } }
