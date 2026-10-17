@@ -144,3 +144,7 @@ main{overflow-x:clip}
 .reference-hero .hero-caption{display:none}
 @media(max-width:760px){.reference-hero{height:90svh;min-height:690px;max-height:850px}.reference-hero .hero-content{padding:110px 5vw 85px;justify-content:flex-end}.reference-hero h1{font-size:clamp(84px,21vw,150px);margin-bottom:25px}.reference-hero .hero-image{object-position:62% 40%}.reference-hero:after{background:linear-gradient(0deg,#000c,#0001 90%)}.reference-hero .eyebrow{font-size:9px;max-width:270px}.reference-hero .hero-bottom p{font-size:16px}.reference-hero .hero-bottom .button{font-size:12px;padding:12px 14px}}
 .site-nav .brand-paw{width:25px;height:29px;flex:none;color:var(--orange)}
+/* Match interior display headings to the homepage, retaining readable body copy. */
+.inner-page h1,.inner-page h2,.inner-page h3,.inner-page h4{font-family:'Big Shoulders Display',Impact,'Arial Narrow',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.025em;line-height:1.02}
+.inner-page .chart-head{font-size:25px}.inner-page .generation-pair h4{font-size:23px}
+@media(max-width:899px){.trail-line{display:block}.trail-line .trail-path{stroke-width:1.6;stroke-dasharray:5 7}body:not(.inner-page) main>.section .wrap,body:not(.inner-page) .restored-panels .wrap,body:not(.inner-page) .closing .wrap{padding-left:38px}body:not(.inner-page) .photo-strip{padding-left:38px}}

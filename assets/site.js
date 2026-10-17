@@ -172,10 +172,11 @@
       var wrap = fromEl.querySelector('.wrap');
       var mr = mainEl.getBoundingClientRect(), fr = fromEl.getBoundingClientRect(), tr = toEl.getBoundingClientRect();
       var textStart = wrap.getBoundingClientRect().left - mr.left + parseFloat(getComputedStyle(wrap).paddingLeft);
-      if (window.innerWidth < 900 || textStart < 44) { trail.style.display = 'none'; return; }
+      var mobileTrail = window.innerWidth < 900;
+      if (!mobileTrail && textStart < 44) { trail.style.display = 'none'; return; }
       trail.style.display = '';
       var top = fr.top - mr.top + 48; trailH = tr.bottom - fr.top - 60;
-      var w = mainEl.clientWidth, x0 = textStart / 2, amp = Math.min((textStart - 24) / 2, 46);
+      var w = mainEl.clientWidth, x0 = mobileTrail ? 14 : textStart / 2, amp = mobileTrail ? 4 : Math.min((textStart - 24) / 2, 46);
       trail.style.top = top + 'px'; trail.style.height = trailH + 'px';
       trail.setAttribute('viewBox', '0 0 ' + w + ' ' + trailH);
       var xAt = function (y) { return x0 + amp * (0.7 * Math.sin(y / 230) + 0.3 * Math.sin(y / 83)); };
@@ -208,8 +209,8 @@
       maskPath.style.strokeDasharray = trailLen;
       for (var py = 90, side = 1; py < (endEl ? vy - 20 : trailH - 30); py += 115, side = -side) {
         var ang = Math.atan2(1, (xAt(py + 1) - xAt(py - 1)) / 2) * 180 / Math.PI;
-        var u = svgEl('use', { href: '#print', width: 13, height: 15, x: -6.5, y: -7.5,
-          transform: 'translate(' + (xAt(py) + side * 9).toFixed(1) + ' ' + py + ') rotate(' + (ang + 90).toFixed(1) + ')' });
+        var u = svgEl('use', { href: '#print', width: mobileTrail ? 9 : 13, height: mobileTrail ? 11 : 15, x: mobileTrail ? -4.5 : -6.5, y: mobileTrail ? -5.5 : -7.5,
+          transform: 'translate(' + (xAt(py) + side * (mobileTrail ? 6 : 9)).toFixed(1) + ' ' + py + ') rotate(' + (ang + 90).toFixed(1) + ')' });
         trail.appendChild(u); paws.push({ el: u, y: py });
       }
       updateTrail();
