@@ -126,3 +126,21 @@ main{position:relative}.trail-line{position:absolute;left:0;width:100%;pointer-e
 .investment-card{margin-top:30px;max-width:850px}.investment-card strong{font-size:clamp(50px,6vw,78px)}
 /* Keep off-screen motion from widening the mobile document. */
 main{overflow-x:clip}
+/* Homepage opening panel: original condensed display, current word choreography. */
+.reference-hero{height:92svh;min-height:700px;max-height:1000px;border-radius:0}
+.reference-hero .hero-content{max-width:1320px;margin:auto;padding:130px 4vw 90px;justify-content:center}
+.reference-hero .hero-image{object-position:62% 40%;filter:none;transform:none}
+.reference-hero:after{background:linear-gradient(90deg,#0007,transparent 85%),linear-gradient(0deg,#0008,transparent 65%)}
+.reference-hero:before{content:'';position:absolute;bottom:0;left:0;right:0;height:65px;background:linear-gradient(transparent,#fff);z-index:1;pointer-events:none}
+.reference-hero h1{font-family:'Big Shoulders Display',Impact,'Arial Narrow',sans-serif;font-weight:900;font-size:clamp(105px,12vw,190px);line-height:.9;letter-spacing:-.025em;text-transform:uppercase;margin:12px 0 28px}
+.reference-hero .verb-slot{height:.94em}
+.reference-hero h1 .wild-word{white-space:nowrap;color:#e4531c}
+.reference-hero .hero-the{color:#fff}
+.reference-hero .eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.12em;color:#d5d5d5}
+.reference-hero .hero-bottom{display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:14px;max-width:650px}
+.reference-hero .hero-bottom p{flex-basis:100%;font-size:clamp(17px,1.6vw,23px);line-height:1.6;margin-bottom:14px}
+.reference-hero .hero-bottom .button{border-radius:3px;background:#e4531c;border:2px solid #e4531c;color:#fff;padding:14px 22px;font-weight:700;margin-top:0}
+.reference-hero .hero-bottom .hero-secondary{background:transparent;border-color:#fff}
+.reference-hero .hero-caption{display:none}
+@media(max-width:760px){.reference-hero{height:90svh;min-height:690px;max-height:850px}.reference-hero .hero-content{padding:110px 5vw 85px;justify-content:flex-end}.reference-hero h1{font-size:clamp(84px,21vw,150px);margin-bottom:25px}.reference-hero .hero-image{object-position:62% 40%}.reference-hero:after{background:linear-gradient(0deg,#000c,#0001 90%)}.reference-hero .eyebrow{font-size:9px;max-width:270px}.reference-hero .hero-bottom p{font-size:16px}.reference-hero .hero-bottom .button{font-size:12px;padding:12px 14px}}
+.site-nav .brand-paw{width:25px;height:29px;flex:none;color:var(--orange)}
