@@ -1,6 +1,7 @@
 from pathlib import Path
 from html import escape
 from hashlib import sha256
+import re
 r=Path(__file__).resolve().parent.parent
 # Content-addressed assets keep HTML and its styling paired across deploys.
 asset_urls={}
@@ -18,6 +19,7 @@ def page(file,title,description,body):
 <body><a class="skip" href="#main">Skip to content</a><header class="site-nav"><a class="brand" href="index.html"><svg class="brand-paw" viewBox="0 0 24 28" aria-hidden="true"><g fill="currentColor"><ellipse cx="12" cy="19" rx="6" ry="5.5"/><ellipse cx="4.2" cy="11" rx="2.2" ry="3"/><ellipse cx="9" cy="6" rx="2.3" ry="3.2"/><ellipse cx="15" cy="6" rx="2.3" ry="3.2"/><ellipse cx="19.8" cy="11" rx="2.2" ry="3"/></g></svg> FOLLOW THE WILD</a><nav aria-label="Main navigation">{links}<a class="creator-nav" href="get-involved.html">For creators</a><a class="button small" href="support.html#donate">Donate</a></nav><button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav">Menu +</button></header><nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>{links}<a href="get-involved.html">For creators</a><a href="support.html#donate">Donate</a></nav><main id="main">{body}</main><footer><div class="footer-top"><a class="brand" href="index.html"><span class="brand-symbol">✳</span> FOLLOW THE WILD</a><p>More voices. More wonder.<br>A generation that cares.</p><div class="footer-links">{links}<a href="get-involved.html">For creators</a><a href="support.html">Support the work ↗</a></div></div><div class="footer-base"><span>© 2026 Follow the Wild · A wildlife nonprofit</span><span>For the next generation. For the wild.</span><button id="motion-toggle" aria-pressed="false">Pause motion</button></div></footer></body></html>'''
  if file=='index.html':
   html=html.replace('</head>', '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&display=swap"></head>')
+ html=re.sub(r'href="([a-z-]+\.html)(#[^"]*)?"', lambda m: 'href="'+m[1]+'?release=20261017-2'+(m[2] or '')+'"', html)
  (r/file).write_text(html)
 def cta():
  return '''<section class="closing"><img src="assets/photos/humpback-dive.jpg" alt="A humpback whale beneath the surface" loading="lazy"><div class="wrap"><p class="eyebrow">The next chapter is ours to make</p><h2 class="reveal">You tell stories.<br><em>Let’s change the story.</em></h2><a class="button" href="get-involved.html">Register your interest <span>↗</span></a></div></section>'''
