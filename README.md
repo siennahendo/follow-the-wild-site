@@ -1,26 +1,42 @@
-# Follow the Wild — website
+# Follow the Wild website
 
-Static site for the Follow the Wild nonprofit. Plain HTML, CSS and JavaScript, no build step.
+Static HTML, CSS and JavaScript. No build step or package installation required.
 
-| Page | File |
-| --- | --- |
-| Home | `index.html` |
-| About | `about.html` |
-| What we do | `programs.html` |
-| Get involved | `get-involved.html` |
+## Local preview
 
-Shared styles live in `assets/site.css`. `assets/site.js` adds the header, footer and menu, paints the landscape scenes and runs the sign-up form.
+From this directory:
 
-## Preview locally
-
-```bash
-python3 -m http.server 8000
+```sh
+python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-Then open http://localhost:8000.
+Open http://127.0.0.1:8765/ in a browser.
 
-## Before launch
+## Pages
 
-- **Sign-up form** (`get-involved.html`): it's preview-only and doesn't save anything. Connect it to an email list service (Mailchimp, Buttondown, Formspree) by pointing the form at that service and removing the preview handler at the bottom of `assets/site.js`.
-- **Photos**: web-sized copies live in `assets/photos/` (made from the originals at 2000px or 1400px). To swap one, drop a new file in that folder and change the `src` on the matching `<img class="scene">`. Use `style="object-position:x% y%"` to choose which part of the photo stays in frame on phones.
-- **Donations**: 501(c)(3) status is approved. Add a Donate button once an online giving platform is set up.
+| File | Purpose |
+| --- | --- |
+| `index.html` | Creator community invitation and rotating headline |
+| `about.html` | Mission and approach |
+| `programs.html` | Creator-platform vision and illustrative collaboration concepts |
+| `why-it-matters.html` | Sourced, animated charts about audience habits |
+| `get-involved.html` | Creator interest list prototype; not a membership or funding application |
+| `support.html` | Funding vision and local donation demo |
+
+Shared styles and interactions are in `assets/site.css`, `assets/organic.css` and `assets/site.js`. The page generator and research content are in `scripts/`; run `python3 scripts/build_preview.py` after editing them. Existing photography remains in `assets/photos/`.
+
+## Current review scope
+
+The October 17, 2026 local revision focuses on wildlife content made for creator platforms and younger audiences. Filmmakers and photographers are included when bringing their work into these formats. The mission is to make the next generation care about wildlife and want to get outside. The intended mechanism is funding projects made by creators together. Membership, application rules, funding amounts and schedules are undecided. The draft uses an interest list and clearly labels concept projects as illustrative; it does not invent signed-up creators. Earlier classroom, grantmaking, science and conservation-program commitments have been removed from the draft.
+
+The headline rotates through Follow, Share, Stream, Watch, then back to Follow, with The Wild remaining orange. Motion respects `prefers-reduced-motion`; the footer also has a pause control. Charts animate into view and have replay controls. Essential content and chart data remain readable without JavaScript.
+
+## Before public launch
+
+- The donation flow is a local demonstration with preset/custom USD amounts and a preview dialog. It has no payment processor, collects no donor information, and records no pledges. Connect a chosen donation service only after authorization.
+- The interest form is a local demonstration. It validates entries but sends and saves nothing. Connect an agreed signup service and finalize its privacy/consent language before collecting submissions; then replace preview-specific form labels.
+- Review mission wording and collaboration ideas with Michael and Sienna.
+- Confirm the legal nonprofit designation before adding tax-exemption or donation claims.
+- The research page links primary sources and labels dates, populations and units. The YouTube line chart compares July snapshots, not annual averages. Recheck any future data updates against those definitions.
+- Review social sharing artwork in `assets/share.jpg` before release.
+- GitHub Pages currently publishes `main` to the domain in `CNAME`. Pushing or merging to that branch may change the live site. This revision is shared for review on `codex/creator-community-preview`. Do not merge to `main` or deploy to production without approval.
