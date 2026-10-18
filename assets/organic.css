@@ -148,3 +148,4 @@ main{overflow-x:clip}
 .inner-page h1,.inner-page h2,.inner-page h3,.inner-page h4{font-family:'Big Shoulders Display',Impact,'Arial Narrow',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.025em;line-height:1.02}
 .inner-page .chart-head{font-size:25px}.inner-page .generation-pair h4{font-size:23px}
 @media(max-width:899px){.trail-line{display:block}.trail-line .trail-path{stroke-width:1.6;stroke-dasharray:5 7}body:not(.inner-page) main>.section .wrap,body:not(.inner-page) .restored-panels .wrap,body:not(.inner-page) .closing .wrap{padding-left:38px}body:not(.inner-page) .photo-strip{padding-left:38px}}
+.contact-note{font-size:13px;line-height:1.6;color:#555;margin:18px 0}.contact-note a{text-decoration:underline}.join-panel label>span{font-size:11px;font-weight:400;color:#555;margin-left:5px}

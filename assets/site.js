@@ -248,13 +248,31 @@
     requestAnimationFrame(()=>chart.classList.add('visible'));
   }));
   const form = document.getElementById('interest-form');
-  if(form) form.querySelector('button[type="submit"]').disabled = false;
-  if(form) form.addEventListener('submit', e => {
-    e.preventDefault();
+  if (form) {
+    const email = form.elements.email;
+    const instagram = form.elements.instagram;
     const status = document.getElementById('form-status');
-    if(!form.querySelector('input[name="craft"]:checked')) { status.textContent='Choose at least one kind of work you create.'; return; }
-    status.textContent = 'That’s the preview experience. Nothing was sent or saved. We’ll connect the creator interest list before launch.';
-  });
+    form.querySelector('button[type="submit"]').disabled = false;
+    const validateContact = () => {
+      const available = email.value.trim() || instagram.value.trim().replace(/^@/, '');
+      email.setCustomValidity(available ? '' : 'Please provide an email address or Instagram handle.');
+    };
+    [email, instagram].forEach(input => input.addEventListener('input', () => {
+      validateContact(); status.textContent = '';
+    }));
+    form.querySelector('button[type="submit"]').addEventListener('click', validateContact);
+    form.addEventListener('submit', e => {
+      validateContact();
+      if (!form.reportValidity()) { e.preventDefault(); return; }
+      if (form.dataset.delivery !== 'active') {
+        e.preventDefault();
+        status.textContent = 'Registration isn’t open yet. Your details have not been sent or saved. Please check back soon.';
+        return;
+      }
+      // Native POST preserves FormSubmit CAPTCHA and provider error handling.
+      // The provider confirms submission; never claim delivery optimistically.
+    });
+  }
   // Donation prototype: purely local UI, with no payment or submission service.
   const donation = document.getElementById('donation-form');
   if (donation) {
