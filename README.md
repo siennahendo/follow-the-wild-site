@@ -34,7 +34,7 @@ The headline rotates through Follow, Share, Stream, Watch, then back to Follow, 
 ## Before public launch
 
 - The donation flow is a local demonstration with preset/custom USD amounts and a preview dialog. It has no payment processor, collects no donor information, and records no pledges. Connect a chosen donation service only after authorization.
-- The interest form is a local demonstration. It validates entries but sends and saves nothing. Connect an agreed signup service and finalize its privacy/consent language before collecting submissions; then replace preview-specific form labels.
+- The interest form is live (turned on 2026-10-18). It posts to FormSubmit, which emails sienna@mike-mcgovern.com with a copy to zander@mike-mcgovern.com. FormSubmit only starts delivering after the first submission's one-time activation email is confirmed. To pause it, set `data-delivery="pending"` on `#interest-form` in `scripts/build_preview.py` and rebuild.
 - Review mission wording and collaboration ideas with Michael and Sienna.
 - Confirm the legal nonprofit designation before adding tax-exemption or donation claims.
 - The research page links primary sources and labels dates, populations and units. The YouTube line chart compares July snapshots, not annual averages. Recheck any future data updates against those definitions.
