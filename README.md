@@ -27,16 +27,14 @@ Shared styles and interactions are in `assets/site.css`, `assets/organic.css` an
 
 ## Current review scope
 
-The October 17, 2026 local revision focuses on wildlife content made for creator platforms and younger audiences. Filmmakers and photographers are included when bringing their work into these formats. The mission is to make the next generation care about wildlife and want to get outside. The intended mechanism is funding projects made by creators together. Membership, application rules, funding amounts and schedules are undecided. The draft uses an interest list and clearly labels concept projects as illustrative; it does not invent signed-up creators. Earlier classroom, grantmaking, science and conservation-program commitments have been removed from the draft.
-
-The headline rotates through Follow, Share, Stream, Watch, then back to Follow, with The Wild remaining orange. Motion respects `prefers-reduced-motion`; the footer also has a pause control. Charts animate into view and have replay controls. Essential content and chart data remain readable without JavaScript.
+The October 28, 2026 revision reflects the nonprofit sync: education and public engagement through wildlife and nature storytelling, for audiences of all ages. The planned first fellowship combines small project grants with mentoring; amounts, dates, eligibility and participants remain unannounced. Home introduces the purpose, About explains the role, Our work describes the proposed programmes and reporting, Social media data retains the sourced research, For creators collects introductions, and Support explains philanthropic and corporate opportunities. No impact totals or partner commitments are claimed.
 
 ## Before public launch
 
 - The donation flow is a local demonstration with preset/custom USD amounts and a preview dialog. It has no payment processor, collects no donor information, and records no pledges. Connect a chosen donation service only after authorization.
 - The interest form is live (turned on 2026-10-18). It posts to FormSubmit, which emails sienna@mike-mcgovern.com with a copy to zander@mike-mcgovern.com. FormSubmit only starts delivering after the first submission's one-time activation email is confirmed. To pause it, set `data-delivery="pending"` on `#interest-form` in `scripts/build_preview.py` and rebuild.
-- Review mission wording and collaboration ideas with Michael and Sienna.
+- Mission wording and programme details reflect the October 28 call; confirm legal-purpose wording with counsel.
 - Confirm the legal nonprofit designation before adding tax-exemption or donation claims.
 - The research page links primary sources and labels dates, populations and units. The YouTube line chart compares July snapshots, not annual averages. Recheck any future data updates against those definitions.
 - Review social sharing artwork in `assets/share.jpg` before release.
-- GitHub Pages currently publishes `main` to the domain in `CNAME`. Pushing or merging to that branch may change the live site. This revision is shared for review on `codex/creator-community-preview`. Do not merge to `main` or deploy to production without approval.
+- GitHub Pages currently publishes `main` to the domain in `CNAME`. Pushing or merging to that branch may change the live site. Publish only changes authorized by the site owner; the October 28 website update was requested by Sienna.
