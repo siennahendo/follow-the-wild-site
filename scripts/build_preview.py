@@ -23,7 +23,7 @@ def page(file,title,description,body):
  html=re.sub(r'href="([a-z-]+\.html)(#[^"]*)?"', lambda m: 'href="'+m[1]+'?release=20261028-1'+(m[2] or '')+'"', html)
  (r/file).write_text(html)
 def cta():
- return '''<section class="closing"><img src="assets/photos/humpback-dive.jpg" alt="A humpback whale beneath the surface" loading="lazy"><div class="wrap"><p class="eyebrow">The next chapter is ours to make</p><h2 class="reveal">You tell stories.<br><em>Let’s change the story.</em></h2><a class="button" href="get-involved.html">Register your interest <span>↗</span></a></div></section>'''
+ return '''<section class="closing"><img src="assets/photos/tree-sunset.jpg" alt="An acacia tree silhouetted against a red sunset" loading="lazy"><div class="wrap"><p class="eyebrow">The next chapter is ours to make</p><h2 class="reveal">You tell stories.<br><em>Let’s change the story.</em></h2><a class="button" href="get-involved.html">Register your interest <span>↗</span></a></div></section>'''
 def hero(kicker,heading,text,img):
  return f'<section class="page-hero"><img src="assets/photos/{img}" alt="" class="hero-image"><div class="wrap"><p class="eyebrow">{kicker}</p><h1>{heading}</h1><p class="intro">{text}</p></div></section>'
 network='''<div class="network" aria-label="Filmmakers, photographers, digital creators and storytellers connecting with one another and with the wild"><svg viewBox="0 0 600 440" aria-hidden="true"><g class="network-lines"><path class="peer-flow" d="M110 90Q300 -10 490 90M490 90Q590 220 490 350M490 350Q300 450 110 350M110 350Q10 220 110 90"/><path class="inward-flow" d="M110 90Q220 90 300 220M490 90Q380 90 300 220M490 350Q380 350 300 220M110 350Q220 350 300 220"/></g><circle class="orbit" cx="300" cy="220" r="145"/></svg><span class="node n1">Filmmakers</span><span class="node n2">Photographers</span><span class="node n3">Digital creators</span><span class="node n4">Storytellers</span><span class="node center">THE<br><b>WILD</b></span><span class="network-caption">Different voices. A shared purpose.</span></div>'''
@@ -88,7 +88,7 @@ work+=WK_SCHOLAR
 work+=WK_PAIR
 work+=WK_EDU
 work+=WK_REPORT
-work+=close('Be part of the first chapter','A voice. An idea.<br><em>A new connection.</em>','Register your interest','get-involved.html','tree-sunset.jpg','An acacia tree silhouetted against a red sunset')
+work+=close('Be part of the first chapter','A voice. An idea.<br><em>A new connection.</em>','Register your interest','get-involved.html','polar-bear-roar.jpg','A polar bear calling out on the sea ice')
 page('programs.html','Our work','Emerging Storytellers Scholarship & Mentorship, storytelling partnerships with scientists, and free Wildlife Education & Outreach.',work)
 
 join=hero('For creators and mentors','The wild<br>needs <em>your voice.</em>','Bring your knowledge, your craft and a story you want people to understand.','salt-flat-sunset.jpg').replace('class="hero-image"','class="hero-image" style="object-position:50% 82%"')

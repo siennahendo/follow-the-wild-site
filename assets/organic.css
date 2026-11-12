@@ -199,3 +199,5 @@ main{overflow-x:clip}
 @media(max-width:900px){.wk-cards{grid-template-columns:minmax(0,1fr)}.wk-card{min-height:420px}.wk-split{grid-template-columns:minmax(0,1fr)}.wk-split.wk-flip>.wk-photo{order:0}.wk-photo{aspect-ratio:16/11}.wk-sub{margin-top:50px}}
 @media(max-width:560px){.wk-diagram{grid-template-columns:minmax(0,1fr)}.wk-link{width:auto;height:30px}.wk-link i{left:50%;right:auto;top:-8px;bottom:-8px;border-top:0;border-left:2px dashed var(--orange)}.wk-card-body{padding:24px}}
 .wk-feature .funding-stage{color:#5d6b58;border-left:3px solid #c2470f;padding-left:14px}
+.closing>img[src*="polar-bear-roar"]{filter:brightness(.55) saturate(1.1);object-position:50% 35%;transform:scale(1.5) translateX(16%)}
+@media(max-width:700px){.closing>img[src*="polar-bear-roar"]{transform:none;object-position:60% 40%}}
