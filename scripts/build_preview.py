@@ -51,8 +51,8 @@ def steps(kicker, heading, items, light=False):
  cards=''.join(f'<article class="reveal"><span>0{i+1}</span><h3>{title}</h3><p>{copy}</p></article>' for i,(title,copy) in enumerate(items))
  return f'<section class="section {"light" if light else ""}"><div class="wrap"><p class="eyebrow">{kicker}</p><h2 class="reveal">{heading}</h2><div class="steps">{cards}</div></div></section>'
 
-def close(kicker, heading, label, url):
- return f'<section class="closing"><img src="assets/photos/humpback-dive.jpg" alt="A humpback whale beneath the surface" loading="lazy"><div class="wrap"><p class="eyebrow">{kicker}</p><h2 class="reveal">{heading}</h2><a class="button" href="{url}">{label} <span>↗</span></a></div></section>'
+def close(kicker, heading, label, url, img='humpback-dive.jpg', alt='A humpback whale beneath the surface'):
+ return f'<section class="closing"><img src="assets/photos/{img}" alt="{alt}" loading="lazy"><div class="wrap"><p class="eyebrow">{kicker}</p><h2 class="reveal">{heading}</h2><a class="button" href="{url}">{label} <span>↗</span></a></div></section>'
 
 home='''<section class="hero reference-hero"><img class="hero-image" src="assets/photos/baby-gorilla.jpg" alt="A young mountain gorilla looking out from the leaves" fetchpriority="high"><div class="hero-content wrap"><h1 aria-label="Follow the Wild"><span class="verb-slot" aria-hidden="true"><span id="hero-verb">Follow</span></span><span class="wild-word" aria-hidden="true"><span class="hero-the">The</span> Wild.</span></h1><div class="hero-bottom"><p>Stories that bring the natural world closer.<br>And the people who tell them.</p><a class="button" href="programs.html">Discover our work</a><a class="button hero-secondary" href="get-involved.html">Get involved</a></div></div><div class="hero-index" aria-hidden="true"><span id="verb-number">01</span> / 04</div></section>'''
 home+=section('Our purpose','More curiosity.<br><em>More connection.</em>',f'<p class="body-copy">{MISSION}</p><p class="body-copy">A remarkable animal. A forest close to home. A changing ocean. We bring together the people who know these stories and the creators who can help others discover them.</p><a class="text-link" href="about.html">Why we exist ↗</a>',ident='the-idea')
@@ -88,7 +88,7 @@ work+=WK_SCHOLAR
 work+=WK_PAIR
 work+=WK_EDU
 work+=WK_REPORT
-work+=close('Be part of the first chapter','A voice. An idea.<br><em>A new connection.</em>','Register your interest','get-involved.html')
+work+=close('Be part of the first chapter','A voice. An idea.<br><em>A new connection.</em>','Register your interest','get-involved.html','tree-sunset.jpg','An acacia tree silhouetted against a red sunset')
 page('programs.html','Our work','Emerging Storytellers Scholarship & Mentorship, storytelling partnerships with scientists, and free Wildlife Education & Outreach.',work)
 
 join=hero('For creators and mentors','The wild<br>needs <em>your voice.</em>','Bring your knowledge, your craft and a story you want people to understand.','salt-flat-sunset.jpg').replace('class="hero-image"','class="hero-image" style="object-position:50% 82%"')
