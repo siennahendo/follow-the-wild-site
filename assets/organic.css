@@ -201,3 +201,11 @@ main{overflow-x:clip}
 .wk-feature .funding-stage{color:#5d6b58;border-left:3px solid #c2470f;padding-left:14px}
 .closing>img[src*="polar-bear-roar"]{filter:brightness(.55) saturate(1.1);object-position:50% 35%;transform:scale(1.5) translateX(16%) translateY(-6%)}
 @media(max-width:700px){.closing>img[src*="polar-bear-roar"]{transform:none;object-position:60% 40%}}
+
+/* ---------- About page ---------- */
+.ab-statement{font-family:var(--body);font-weight:500;font-size:clamp(26px,3vw,44px);line-height:1.22;letter-spacing:-.01em;max-width:30ch;margin:18px 0 56px;color:#17251c}
+.ab-statement:before{content:'“';display:block;font-family:var(--display);font-size:1.9em;line-height:.6;color:#c2470f;margin-bottom:10px}
+.ab-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.ab-pair .wk-tile p{font-size:16px}
+@media(max-width:800px){.ab-pair{grid-template-columns:minmax(0,1fr)}.ab-statement{margin-bottom:36px}}
+.wk-feature:not(.light) .body-copy{color:var(--muted)}
