@@ -215,3 +215,7 @@ main{overflow-x:clip}
 .research-section.dark-chart .research-visual{background:#f3f4ef;color:#17251c;border-color:transparent}
 .research-section.dark-chart .research-visual .chart-sub,.research-section.dark-chart .research-visual .chart-source,.research-section.dark-chart .research-visual .bar-label,.research-section.dark-chart .research-visual p{color:#4d5a4f}
 .research-section.dark-chart .research-visual .chart-head,.research-section.dark-chart .research-visual h3{color:#17251c}
+
+/* For creators cover: people beside "your voice", more sunset showing */
+@media(min-width:901px){.page-hero .hero-image[src*="salt-flat-sunset"]{width:140%;height:auto;max-width:none;inset:auto;left:-2%;top:calc(440px - 60vw);object-fit:fill;transform:translateY(var(--drift,0px))}}
+@media(min-width:901px) and (max-width:1200px){.page-hero .hero-image[src*="salt-flat-sunset"]{top:calc(380px - 59vw)}}
