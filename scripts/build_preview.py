@@ -20,7 +20,7 @@ def page(file,title,description,body):
  html=html.replace('</head>', '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&display=swap"></head>')
  if file!='index.html':
   html=html.replace('<body>', '<body class="inner-page">')
- html=re.sub(r'href="([a-z-]+\.html)(#[^"]*)?"', lambda m: 'href="'+m[1]+'?release=20261112-1'+(m[2] or '')+'"', html)
+ html=re.sub(r'href="([a-z-]+\.html)(#[^"]*)?"', lambda m: 'href="'+m[1]+'?release=20261113-1'+(m[2] or '')+'"', html)
  (r/file).write_text(html)
 def cta():
  return '''<section class="closing"><img src="assets/photos/tree-sunset.jpg" alt="An acacia tree silhouetted against a red sunset" loading="lazy"><div class="wrap"><p class="eyebrow">The next chapter is ours to make</p><h2 class="reveal">You tell stories.<br><em>Let’s change the story.</em></h2><a class="button" href="get-involved.html">Register your interest <span>↗</span></a></div></section>'''
