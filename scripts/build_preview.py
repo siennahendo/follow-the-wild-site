@@ -91,7 +91,7 @@ work+=WK_SCHOLAR
 work+=WK_PAIR
 work+=WK_EDU
 work+=WK_REPORT
-work+=close('Be part of the first chapter','A voice. An idea.<br><em>A new connection.</em>','Register your interest','get-involved.html','polar-bear-roar.jpg','A polar bear calling out on the sea ice')
+work+=close('Be part of the first chapter','A voice. An idea.<br><em>A new connection.</em>','Register your interest','get-involved.html','eagle-rays.jpg','A group of spotted eagle rays gliding over white sand')
 page('programs.html','Our work','Emerging Storytellers Scholarship & Mentorship, storytelling partnerships with scientists, and free Wildlife Education & Outreach.',work)
 
 join=hero('For creators and mentors','The wild<br>needs <em>your voice.</em>','Bring your knowledge, your craft and a story you want people to understand.','salt-flat-sunset.jpg')
