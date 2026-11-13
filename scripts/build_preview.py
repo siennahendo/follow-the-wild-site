@@ -100,7 +100,7 @@ faq=[('Do I need a large audience?','No minimum audience is required to introduc
 join+='<section class="section"><div class="wrap two-col"><p class="eyebrow">A few questions</p><div class="faq">'+''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in faq)+'</div></div></section>'
 page('get-involved.html','For creators','Introduce yourself to Follow The Wild: emerging storytellers, mentors, scientists and educators working with wildlife, nature and the environment.',join)
 
-support=hero('Support the work','Back the people<br>behind <em>the stories.</em>','Help emerging storytellers make work that brings wildlife and nature to a wider audience.','humpback-dive.jpg')
+support=hero('Support the work','Back the people<br>behind <em>the stories.</em>','Help emerging storytellers make work that brings wildlife and nature to a wider audience.','sunset-leap.jpg')
 support+=steps('What support can make possible','A clear purpose<br><em>for every gift.</em>',[
  ('Fund a scholarship.','Help an aspiring wildlife storyteller cover the costs of developing and sharing their story.'),
  ('Make mentoring possible.','Help provide the time, coordination and practical support that connect emerging voices with experienced creators.'),
